@@ -21,6 +21,7 @@ function onSubmit(event) {
     if (data.hits.length !== 0) {
       createMarkup(data);
       photosLeft = data.totalHits - data.hits.length;
+      console.log(data.hits.length);
     } else {
       Notiflix.Notify.failure(
         "We're sorry, but you've reached the end of search results."
@@ -28,7 +29,7 @@ function onSubmit(event) {
     }
   });
 }
-
+buttonEl.classList.add('ishiden');
 export function loadMore() {
   currentPage += 1;
 
@@ -36,6 +37,7 @@ export function loadMore() {
     photosLeft -= data.hits.length;
 
     if (photosLeft > 0) {
+      buttonEl.classList.remove('ishiden');
       createMarkup(data);
     } else {
       buttonEl.classList.add('ishiden');
